@@ -1,6 +1,6 @@
 <template>
     <nav>
-      <router-link to="/">Now</router-link>
+      <router-link to="/Now">Now</router-link>
       <router-link to="/Popular">Popular</router-link>
     </nav>
   </template>
