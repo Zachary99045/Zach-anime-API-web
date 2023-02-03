@@ -1,17 +1,10 @@
 <template>
-    <div>
-      <button @click="showAnime">Show Anime</button>
-      
-      <div class="cardcontainer" v-if="AnimeData">
-        <div v-for="AD in AnimeData" :key="AD._id">
-          <card v-bind:imagelink="AD.image" :title="AD.title" :alternativeTitles="AD.alternativeTitles" :ranking="AD.ranking"/>
-        </div>
-      </div>
-      <p>{{AnimeData}}</p>
-    </div>
+  <div>
+    <!-- Page content goes here -->
+    <h2>hi</h2>
+  </div>
 </template>
-  
- 
+
 <script>
 import axios from 'axios';
 import Card from './card';
@@ -55,9 +48,5 @@ export default {
 </script>
 
 <style>
-.cardcontainer{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
+/* Page styles go here */
 </style>

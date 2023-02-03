@@ -3,15 +3,20 @@ const router = createRouter({
   history: createWebHashHistory(),
   routes: [
     {
-      path: '/Now',
-      name: 'Now',
-      component: ()=>import ('../components/Now.vue')
+      path: '/',
+      name: 'Favorite',
+      component: ()=>import ('../components/Favorite.vue')
     },
     {
       path: '/Popular',
       name: 'Popular',
       component: ()=>import ('../components/Popular.vue')
-    }
+    },
+    {
+      path: '/intro/:id',
+      name: 'intro',
+      component: ()=>import ('../components/intro.vue')
+    },
   ]
 })
 
