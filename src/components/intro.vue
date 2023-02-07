@@ -1,7 +1,8 @@
 <template>
     <div class="introcontainer">
-        <div class="toppage" v-bind:style="{backgroundImage: `url('${AnimeData.image}')`}">{{AnimeData}}</div>
-        <div>{{$route.params.id}}</div>
+        <div class="toppage" :style="{backgroundImage: ADimageURL}">{{AnimeData}}</div>
+        <div>{{ADimageURL}}</div>
+        <!-- <div>{{$route.params.id}}</div> -->
         <!-- Page content goes here -->
         <h2>hi</h2>
     </div>
@@ -9,12 +10,27 @@
   
   <script>
     import axios from 'axios';
-    //console.log(this.$route.params.id)
+    import {useRoute} from 'vue-router'
+    //console.log('The id is: ' + this.$router.params.id);
     export default {
        name: "App",
+      //  setup(){
+      //   const route=useRoute()
+      //   onMounted(()=>{
+      //     const id= route.params.id
+      //   })
+      //  },
        data(){
         return{
           AnimeData: [],
+          ADimageURL: '',
+          //backgroundImage:AnimeData.image,
+        }
+      },
+      computed:{
+        ADimageURL(){
+          console.log(this.AnimeData.image)
+          return this.AnimeData.image;
         }
       },
       async mounted(){
