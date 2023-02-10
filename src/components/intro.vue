@@ -1,7 +1,7 @@
 <template>
     <div class="introcontainer">
-        <div class="toppage" :style="{backgroundImage: ADimageURL}">{{AnimeData}}</div>
-        <div>{{ADimageURL}}</div>
+        <div class="toppage">{{AnimeData[0]}}</div>
+        <img v-bind:src="AnimeData.image" alt="Avatar" style="width:100%"/>
         <!-- <div>{{$route.params.id}}</div> -->
         <!-- Page content goes here -->
         <h2>hi</h2>
@@ -14,23 +14,11 @@
     //console.log('The id is: ' + this.$router.params.id);
     export default {
        name: "App",
-      //  setup(){
-      //   const route=useRoute()
-      //   onMounted(()=>{
-      //     const id= route.params.id
-      //   })
-      //  },
        data(){
         return{
           AnimeData: [],
           ADimageURL: '',
           //backgroundImage:AnimeData.image,
-        }
-      },
-      computed:{
-        ADimageURL(){
-          console.log(this.AnimeData.image)
-          return this.AnimeData.image;
         }
       },
       async mounted(){
@@ -54,7 +42,17 @@
         } catch(error){
           console.error(error);
         }
-      }
+      },
+      // computed:{
+      //   ADimageURL(){
+      //     console.log(this.AnimeData.image)
+      //     return this.AnimeData.image;
+      //   }
+      // },
+      setup(){
+        const route=useRoute()
+        console.log('router data:',route)
+       },
     };
     
   </script>

@@ -1,10 +1,10 @@
 <template>
     <div>
       <button @click="showAnime">Show Anime</button>
-      
       <div class="cardcontainer" v-if="AnimeData">
         <div v-for="AD in AnimeData" :key="AD._id">
           <card v-bind:imagelink="AD.image" :title="AD.title" :alternativeTitles="AD.alternativeTitles" :ranking="AD.ranking"/>
+          <div>{{AD.image}}</div>
         </div>
       </div>
       <p>{{AnimeData}}</p>
