@@ -1,10 +1,12 @@
 <template>
     <div class="introcontainer">
-        <div class="toppage">{{AnimeData[0]}}</div>
-        <img v-bind:src="AnimeData.image" alt="Avatar" style="width:100%"/>
+        <img class="image" v-bind:src="ADimageURL" alt="Avatar"/>
         <!-- <div>{{$route.params.id}}</div> -->
         <!-- Page content goes here -->
-        <h2>hi</h2>
+        <h2>{{ADtitle}}</h2>
+        <div class="link"><p>Link for the website: </p><a :href="ADlink">{{ADlink}}</a></div>
+        <p>Categories: {{ADgenres}}</p>
+        <p>Type:{{ADtype}}</p>
     </div>
   </template>
   
@@ -17,7 +19,11 @@
        data(){
         return{
           AnimeData: [],
-          ADimageURL: '',
+          ADimageURL: null,
+          ADtitle: null,
+          ADlink: null,
+          ADtype: null,
+          ADgenres: null,
           //backgroundImage:AnimeData.image,
         }
       },
@@ -31,24 +37,25 @@
             search: 'Bleach: Sennen Kessen-hen',
           },
           headers: {
-            'X-RapidAPI-Key': 'e69143328emsh92acd746dd6c773p1365d6jsn23bbcb11707b',
+            'X-RapidAPI-Key': '3fa5e9f395mshfac36136d5bcdbdp1d354ajsn1d0398f07409',
             'X-RapidAPI-Host': 'anime-db.p.rapidapi.com'
           }
         }
         try{
           const resData = await axios.get('https://anime-db.p.rapidapi.com/anime',option);
+
           console.log(resData.data.data)
+
           this.AnimeData = await resData.data.data
+          this.ADimageURL = await resData.data.data[0].image
+          this.ADtitle = await resData.data.data[0].title
+          this.ADlink= await resData.data.data[0].link
+          this.ADtype= await resData.data.data[0].type
+          this.ADgenres= await resData.data.data[0].genres
         } catch(error){
           console.error(error);
         }
       },
-      // computed:{
-      //   ADimageURL(){
-      //     console.log(this.AnimeData.image)
-      //     return this.AnimeData.image;
-      //   }
-      // },
       setup(){
         const route=useRoute()
         console.log('router data:',route)
@@ -58,10 +65,19 @@
   </script>
   
   <style>
-  .toppage{
+  .introcontainer{
+      text-align: center;
+      width: 100%;
+      justify-content: center;
+  }
+  .image{
     height:200px;
     background-size:cover;
     background-position:center;
+  }
+  .link{
+    display: flex;
+    justify-content: center;
   }
   /* Page styles go here */
   </style>
